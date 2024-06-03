@@ -1,29 +1,67 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import logo from "../assets/Logo.svg";
 
 export const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true
+  axios.defaults.withCredentials = true;
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:3000/auth/signin", {
+    let valid = true;
+
+    if (email === "") {
+      setEmailError("Email cannot be empty");
+      valid = false;
+    } else if (!validateEmail(email)) {
+      setEmailError("Invalid email format");
+      valid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (password === "") {
+      setPasswordError("Password cannot be empty");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    if (!valid) {
+      return;
+    }
+
+    axios.post(`http://16.171.146.171:3000/auth/signin`, {
       email,
       password,
     }).then(res => {
-      console.log(res)
-      if(res.data.status=== 'ok'){
-        navigate('/')
+      if (res.data.status === 'ok') {
+        toast.success("Login successful!");
+        navigate('/');
+      } else {
+        toast.error(res.data.message);
       }
     }).catch(err => {
-      console.log(err);
+      if (err.response && err.response.data) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
     });
   };
 
@@ -58,10 +96,11 @@ export const SignInPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     name="email"
                     id="email"
-                    className=" border sm:text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-teal-500 focus:border-teal-500"
+                    className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-teal-500 focus:border-teal-500"
                     placeholder="name@company.com"
                     required=""
                   />
+                  {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
                 </div>
                 <div>
                   <label
@@ -76,14 +115,15 @@ export const SignInPage = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className=" border sm:text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-teal-500 focus:border-teal-500"
+                    className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-teal-500 focus:border-teal-500"
                     required=""
                   />
+                  {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
                     <p className="text-sm font-light text-gray-400">
-                      Don't have an account ? &nbsp;
+                      Don't have an account? &nbsp;
                       <Link
                         to="/signup"
                         className="font-medium hover:underline text-teal-500"
@@ -105,6 +145,7 @@ export const SignInPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

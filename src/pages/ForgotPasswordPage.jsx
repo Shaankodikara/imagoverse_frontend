@@ -1,31 +1,56 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true
+  axios.defaults.withCredentials = true;
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:3000/auth/forgot-password", {
+    if (email === "") {
+      setEmailError("Email cannot be empty");
+      return;
+    } else if (!validateEmail(email)) {
+      setEmailError("Invalid email format");
+      return;
+    } else {
+      setEmailError("");
+    }
+
+    axios.post(`http://16.171.146.171:3000/auth/forgot-password`, {
       email,
     }).then(res => {
-      console.log(res.data)
-      if(res.data.status=== 'ok'){
-        navigate('/signin')
+      if(res.data.status === 'ok'){
+        toast.success("Password reset link sent successfully!");
+        navigate('/signin');
+      } else {
+        toast.error(res.data.message);
       }
     }).catch(err => {
-      console.log(err);
+      if (err.response && err.response.data) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
     });
   };
 
   return (
     <>
-    <div className="h-screen bg-slate-300 flex justify-center items-center">
+      <div className="h-screen bg-slate-300 flex justify-center items-center">
         <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl text-center font-semibold leading-tight tracking-tight md:text-2xl text-white">
@@ -44,10 +69,11 @@ export const ForgotPasswordPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   name="email"
                   id="email"
-                  className=" border sm:text-sm rounded-lg   block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-teal-500 focus:border-teal-500"
+                  className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-teal-500 focus:border-teal-500"
                   placeholder="name@company.com"
                   required=""
                 />
+                {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
               </div>
               <button
                 type="submit"
@@ -55,15 +81,14 @@ export const ForgotPasswordPage = () => {
               >
                 Send
               </button>
-             
               <div className="flex justify-center items-center">
                 <Link to="/signin" className="text-sm text-center font-medium hover:underline text-blue-500">Back to Sign in</Link>
               </div>
-              
             </form>
           </div>
         </div>
-    </div>
-  </>
-  )
-}
+      </div>
+      <ToastContainer />
+    </>
+  );
+};
