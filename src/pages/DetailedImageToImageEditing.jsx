@@ -13,7 +13,7 @@ export const DetailedImageToImageEditing = () => {
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
-      .get("http://16.171.146.171:3000/auth/verify")
+      .get("http://13.51.207.98/auth/verify")
       .then((res) => {
         if (res.data.status === "ok") {
         } else {
@@ -45,7 +45,7 @@ export const DetailedImageToImageEditing = () => {
       formData.append('prompt', prompt);
       formData.append('image', image);
 
-      const res = await axios.post("http://16.171.146.171:3000/image/edit-detail", formData, {
+      const res = await axios.post("http://13.51.207.98/image/edit-detail", formData, {
         headers : {
           'Content-Type': 'multipart/form-data'
         }
