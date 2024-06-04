@@ -23,7 +23,7 @@ export const PasswordResetPage = () => {
       setPasswordError("");
     }
 
-    axios.post(`http://16.171.146.171:3000/auth/reset-password/${token}`, {
+    axios.post(`http://13.51.207.98/auth/reset-password/${token}`, {
       password,
     }).then(res => {
       if(res.data.status === 'ok'){
