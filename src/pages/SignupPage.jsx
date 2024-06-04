@@ -53,7 +53,7 @@ export const SignupPage = () => {
       return;
     }
 
-    axios.post(`http://16.171.146.171:3000/auth/signup`, {
+    axios.post(`http://13.51.207.98/auth/signup`, {
       name,
       email,
       password
