@@ -15,7 +15,7 @@ export const HomePage = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("http://16.171.146.171:3000/auth/verify");
+        const res = await axios.get("http://13.51.207.98/auth/verify");
         if (res.data.status === "ok") {
           console.log("user verified..");
         } else {
@@ -31,7 +31,7 @@ export const HomePage = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.get("http://16.171.146.171:3000/auth/logout");
+      const res = await axios.get("http://13.51.207.98/auth/logout");
       if (res.status === 200) {
         navigate("/signin");
       }
