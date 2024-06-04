@@ -12,7 +12,7 @@ export const TextToImagePage = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("http://16.171.146.171:3000/auth/verify");
+        const res = await axios.get("http://13.51.207.98/auth/verify");
         if (res.data.status === "ok") {
         } else {
           navigate("/signin");
@@ -29,7 +29,7 @@ export const TextToImagePage = () => {
     try {
       setImageData(null)
       setLoading(true)
-      const res = await axios.post("http://16.171.146.171:3000/image/generate", {
+      const res = await axios.post("http://13.51.207.98/image/generate", {
         prompt,
       });
       if (res.data.status === "ok") {
