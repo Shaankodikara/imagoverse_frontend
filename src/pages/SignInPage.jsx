@@ -46,7 +46,7 @@ export const SignInPage = () => {
       return;
     }
 
-    axios.post(`http://16.171.146.171:3000/auth/signin`, {
+    axios.post(`http://13.51.207.98/auth/signin`, {
       email,
       password,
     }).then(res => {
