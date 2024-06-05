@@ -30,7 +30,7 @@ export const ForgotPasswordPage = () => {
       setEmailError("");
     }
 
-    axios.post(`http://13.51.207.98/auth/forgot-password`, {
+    axios.post(`https://imagoverse.xyz/auth/forgot-password`, {
       email,
     }).then(res => {
       if(res.data.status === 'ok'){
