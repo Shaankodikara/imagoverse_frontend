@@ -46,7 +46,7 @@ export const SignInPage = () => {
       return;
     }
 
-    axios.post(`https://d4b6-13-51-207-98.ngrok-free.app/auth/signin`, {
+    axios.post(`https://imagoverse.xyz/auth/signin`, {
       email,
       password,
     }).then(res => {
