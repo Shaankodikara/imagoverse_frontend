@@ -23,7 +23,7 @@ export const PasswordResetPage = () => {
       setPasswordError("");
     }
 
-    axios.post(`http://13.51.207.98/auth/reset-password/${token}`, {
+    axios.post(`https://imagoverse.xyz/auth/reset-password/${token}`, {
       password,
     }).then(res => {
       if(res.data.status === 'ok'){
