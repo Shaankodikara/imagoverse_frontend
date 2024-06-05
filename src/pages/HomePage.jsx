@@ -15,7 +15,7 @@ export const HomePage = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("https://d4b6-13-51-207-98.ngrok-free.app/auth/verify");
+        const res = await axios.get("https://imagoverse.xyz/auth/verify");
         if (res.data.status === "ok") {
           console.log("user verified..");
         } else {
