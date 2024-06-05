@@ -12,7 +12,7 @@ export const TextToImagePage = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("https://d4b6-13-51-207-98.ngrok-free.app/auth/verify");
+        const res = await axios.get("https://imagoverse.xyz/auth/verify");
         if (res.data.status === "ok") {
         } else {
           navigate("/signin");
@@ -29,7 +29,7 @@ export const TextToImagePage = () => {
     try {
       setImageData(null)
       setLoading(true)
-      const res = await axios.post("https://d4b6-13-51-207-98.ngrok-free.app/image/generate", {
+      const res = await axios.post("https://imagoverse.xyz/image/generate", {
         prompt,
       });
       if (res.data.status === "ok") {
