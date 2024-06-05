@@ -13,7 +13,7 @@ export const DetailedImageToImageEditing = () => {
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
-      .get("https://d4b6-13-51-207-98.ngrok-free.app/auth/verify")
+      .get("https://imagoverse.xyz/auth/verify")
       .then((res) => {
         if (res.data.status === "ok") {
         } else {
@@ -45,7 +45,7 @@ export const DetailedImageToImageEditing = () => {
       formData.append('prompt', prompt);
       formData.append('image', image);
 
-      const res = await axios.post("https://d4b6-13-51-207-98.ngrok-free.app/image/edit-detail", formData, {
+      const res = await axios.post("https://imagoverse.xyz/image/edit-detail", formData, {
         headers : {
           'Content-Type': 'multipart/form-data'
         }
