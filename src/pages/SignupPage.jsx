@@ -53,7 +53,7 @@ export const SignupPage = () => {
       return;
     }
 
-    axios.post(`http://13.51.207.98/auth/signup`, {
+    axios.post(`https://imagoverse.xyz/auth/signup`, {
       name,
       email,
       password
