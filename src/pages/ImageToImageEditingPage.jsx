@@ -13,7 +13,7 @@ export const ImageToImageEditingPage = () => {
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
-      .get("https://d4b6-13-51-207-98.ngrok-free.app/auth/verify")
+      .get("https://imagoverse.xyz/auth/verify")
       .then((res) => {
         if (res.data.status === "ok") {
         } else {
