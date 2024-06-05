@@ -53,7 +53,7 @@ export const SignupPage = () => {
       return;
     }
 
-    axios.post(`https://d4b6-13-51-207-98.ngrok-free.app/auth/signup`, {
+    axios.post(`https://imagoverse.xyz/auth/signup`, {
       name,
       email,
       password
