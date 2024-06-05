@@ -30,7 +30,7 @@ export const ForgotPasswordPage = () => {
       setEmailError("");
     }
 
-    axios.post(`https://d4b6-13-51-207-98.ngrok-free.app/auth/forgot-password`, {
+    axios.post(`https://imagoverse.xyz/auth/forgot-password`, {
       email,
     }).then(res => {
       if(res.data.status === 'ok'){
