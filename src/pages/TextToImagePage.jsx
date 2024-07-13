@@ -12,7 +12,7 @@ export const TextToImagePage = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("https://imagoverse.xyz/auth/verify");
+        const res = await axios.get("https://b71613bc-a51b-464f-82c1-e20ce3e59228-prod.e1-eu-north-azure.choreoapis.dev/imageverse/backend/v1.0/auth/verify");
         if (res.data.status === "ok") {
         } else {
           navigate("/signin");
@@ -29,7 +29,7 @@ export const TextToImagePage = () => {
     try {
       setImageData(null)
       setLoading(true)
-      const res = await axios.post("https://imagoverse.xyz/image/generate", {
+      const res = await axios.post("https://b71613bc-a51b-464f-82c1-e20ce3e59228-prod.e1-eu-north-azure.choreoapis.dev/imageverse/backend/v1.0/image/generate", {
         prompt,
       });
       if (res.data.status === "ok") {

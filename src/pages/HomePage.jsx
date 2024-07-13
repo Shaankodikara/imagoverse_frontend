@@ -15,7 +15,7 @@ export const HomePage = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("https://imagoverse.xyz/auth/verify");
+        const res = await axios.get("https://b71613bc-a51b-464f-82c1-e20ce3e59228-prod.e1-eu-north-azure.choreoapis.dev/imageverse/backend/v1.0/auth/verify");
         if (res.data.status === "ok") {
           console.log("user verified..");
         } else {
@@ -31,7 +31,7 @@ export const HomePage = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.get("https://d4b6-13-51-207-98.ngrok-free.app/auth/logout");
+      const res = await axios.get("https://b71613bc-a51b-464f-82c1-e20ce3e59228-prod.e1-eu-north-azure.choreoapis.dev/imageverse/backend/v1.0/auth/logout");
       if (res.status === 200) {
         navigate("/signin");
       }

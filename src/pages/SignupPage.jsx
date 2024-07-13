@@ -53,7 +53,7 @@ export const SignupPage = () => {
       return;
     }
 
-    axios.post(`https://imagoverse.xyz/auth/signup`, {
+    axios.post(`https://b71613bc-a51b-464f-82c1-e20ce3e59228-prod.e1-eu-north-azure.choreoapis.dev/imageverse/backend/v1.0/auth/signup`, {
       name,
       email,
       password

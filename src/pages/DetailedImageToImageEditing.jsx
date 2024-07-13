@@ -13,7 +13,7 @@ export const DetailedImageToImageEditing = () => {
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
-      .get("https://imagoverse.xyz/auth/verify")
+      .get("https://b71613bc-a51b-464f-82c1-e20ce3e59228-prod.e1-eu-north-azure.choreoapis.dev/imageverse/backend/v1.0/auth/verify")
       .then((res) => {
         if (res.data.status === "ok") {
         } else {
@@ -45,7 +45,7 @@ export const DetailedImageToImageEditing = () => {
       formData.append('prompt', prompt);
       formData.append('image', image);
 
-      const res = await axios.post("https://imagoverse.xyz/image/edit-detail", formData, {
+      const res = await axios.post("https://b71613bc-a51b-464f-82c1-e20ce3e59228-prod.e1-eu-north-azure.choreoapis.dev/imageverse/backend/v1.0/image/edit-detail", formData, {
         headers : {
           'Content-Type': 'multipart/form-data'
         }
